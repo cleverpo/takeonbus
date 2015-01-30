@@ -10,8 +10,6 @@
 using namespace ui;
 using namespace cocostudio;
 
-
-
 CarModel::CarModel():
 m_node(NULL)
 {
@@ -61,8 +59,11 @@ void CarModel::initNode(CarType type){
     Sprite* notice = static_cast<Sprite*>(car->getChildByName("notice"));
     Text* label = static_cast<Text*>(notice->getChildByName("label"));
     
-//    GLProgram* programe = GLProgramCache::getInstance()->getGLProgram("blackShader");
-//    notice->setGLProgram(programe);
+    GLProgram* program = GLProgramCache::getInstance()->getGLProgram("colorChangeShader");
+    carBody->setGLProgram(program);
+    carBody->getGLProgramState()->setUniformVec3("u_originColor", Vec3(0.968, 0.713, 0.0));
+    carBody->getGLProgramState()->setUniformVec3("u_targetColor", Vec3(0.0, 0.0, 0.0));
+    
     label->setString(convertToString(this->m_number));
     
     this->m_node = car;

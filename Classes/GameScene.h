@@ -42,6 +42,9 @@ protected:
 	void removeCar(CarModel* car);
 
 protected:
+    void addZombie();
+    
+protected:
 	void gameTimer(float dt);
     void stopTimer();
     void startTimer();

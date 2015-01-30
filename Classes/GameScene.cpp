@@ -18,12 +18,14 @@ using namespace ui;
 #define HUD_LAYER_INDEX 1
 #define CAR_LAYER_INDEX 10
 #define PASSENGER_INDEX 50
+#define ZOMBIE_INDEX 60
 #define RESULT_LAYER_INDEX 100
 
 #define ROAD1_Y 330
 #define ROAD2_Y 500
 
 Vec2 dragPassengerOriginPos;
+
 bool isMatch(CarModel* car, PassengerModel* passenger){
     return true;
 }
@@ -66,8 +68,8 @@ bool GameLayer::init(){
     }
 	
     //shader
-//    GLProgram* program = GLProgram::createWithFilenames("shader/black.vsh", "shader/black.fsh");
-//    GLProgramCache::getInstance()->addGLProgram(program, "blackShader");
+    GLProgram* program = GLProgram::createWithFilenames("shader/colorChange.vsh", "shader/colorChange.fsh");
+    GLProgramCache::getInstance()->addGLProgram(program, "colorChangeShader");
     
     //关联乘客管理器和车管理器
     this->m_passengerManager->setCarManager(this->m_carManager);
@@ -75,6 +77,9 @@ bool GameLayer::init(){
     this->initEventDispatcher();
     
     this->initRoad();
+    
+    this->addZombie();
+    
 	return true;
 }
 
@@ -298,6 +303,19 @@ bool GameLayer::addCar(CarModel* car){
 
 void GameLayer::removeCar(CarModel* car){
 	this->m_carLayer->removeChild(car->getNode());
+}
+
+void GameLayer::addZombie(){
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    
+    Label* label = Label::createWithSystemFont("我是\n僵尸", "arial", 30);
+    label->setAnchorPoint(Vec2(0.5, 0));
+    label->setContentSize(Size(100,100));
+    label->setPosition(Vec2(visibleSize.width, 100));
+    
+    label->runAction(MoveTo::create(GameConfig::getInstance()->passengerLeaveSec, Vec2(350, 100)));
+    
+    this->addChild(label, ZOMBIE_INDEX);
 }
 
 void GameLayer::stopTimer(){

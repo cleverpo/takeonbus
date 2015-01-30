@@ -64,7 +64,7 @@ PassengerModel* PassengerManager::addPassenger(){
     this->m_sceneEventDispatcher->dispatchCustomEvent(PassengerManager::EventType_AddPassenger, passenger);
     
     //通知carManager保证在离开时候至少出现一辆车；
-    float limitTime = m_totalTime + config.leaveSec - 2;
+    float limitTime = m_totalTime + config.leaveSec - GameConfig::getInstance()->carCreateRate - 1;
     limitTime = random<float>(m_totalTime, limitTime);
     
     m_carManager->addNeedCar(config.thinkNumber, limitTime);

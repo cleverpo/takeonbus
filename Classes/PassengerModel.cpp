@@ -91,7 +91,7 @@ void PassengerModel::update(float dt){
 
 	//move
 	if (currentX < m_endX){
-		int moveX = MIN(3, m_endX - currentX);
+		int moveX = MIN(6, m_endX - currentX);
 		node->setPositionX(currentX + moveX);
 	}
 }

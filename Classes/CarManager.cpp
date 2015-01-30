@@ -18,7 +18,7 @@ m_sceneEventDispatcher(NULL)
     m_carCreateTime = 0;
     m_totalTime     = 0;
     
-    Director::getInstance()->getScheduler()->schedule(std::bind(&CarManager::update, this, std::placeholders::_1), this, 1, false, TimerKey);
+    Director::getInstance()->getScheduler()->schedule(std::bind(&CarManager::update, this, std::placeholders::_1), this, 0.5, false, TimerKey);
 }
 
 CarManager::~CarManager(){
@@ -67,14 +67,22 @@ void CarManager::addNeedCar(int symbol, float time){
 }
 
 int CarManager::generateNumber(){
+    int ret = 0;
+    float minTime = m_totalTime;
     for (std::map<int, float>::const_iterator it = m_needCarMap.begin(); it != m_needCarMap.end(); it++){
-        if (m_totalTime >= (*it).second){
-            m_needCarMap.erase(it);
-            return (*it).first;
+        if ((*it).second < minTime){
+            ret     = (*it).first;
+            minTime = (*it).second;
         }
     }
     
-    return random(GameConfig::getInstance()->numberRange.x, GameConfig::getInstance()->numberRange.y);
+    if(ret != 0){
+        m_needCarMap.erase(ret);
+    }else{
+        ret = random(GameConfig::getInstance()->numberRange.x, GameConfig::getInstance()->numberRange.y);
+    }
+    
+    return ret;
 }
 
 void CarManager::update(float dt){
@@ -87,7 +95,7 @@ void CarManager::update(float dt){
         if (m_carCount < config->carMaxCount)
             this->addCar();
         m_carCreateTime = 0;
-        m_carCreateSec = random<float>(1.0, config->carCreateRate);
+        m_carCreateSec = random<float>(0.5, config->carCreateRate);
     }else{
         m_carCreateTime += dt;
     }

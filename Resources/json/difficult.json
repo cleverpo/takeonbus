@@ -56,7 +56,7 @@
     "10" : {
         "stayTime" : 15,
         "carCreaetRate" : 3,
-        "carSpeed" : 5,
+        "carSpeed" : 7,
         "maxNumber" : 9
     }
 }
