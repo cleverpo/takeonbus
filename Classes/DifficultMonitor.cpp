@@ -19,12 +19,12 @@ DifficultMonitor* DifficultMonitor::getInstance(){
 
 
 DifficultMonitor::DifficultMonitor(){
-    m_gameConfigInstance = GameConfig::getInstance();
+    m_config = GameConfig::getInstance();
 }
 
 
 DifficultMonitor::~DifficultMonitor(){
-    m_gameConfigInstance = nullptr;
+    m_config = nullptr;
 }
 
 void DifficultMonitor::destroy(){
@@ -34,14 +34,18 @@ void DifficultMonitor::destroy(){
 }
 
 void DifficultMonitor::increateDifficult(){
-    m_gameConfigInstance->passengerMaxCount = MIN(11, m_gameConfigInstance->passengerMaxCount + 1);
-    m_gameConfigInstance->passengerCreateRate = MAX(1, m_gameConfigInstance->passengerCreateRate - 1);
-    m_gameConfigInstance->passengerLeaveSec = MAX(3, m_gameConfigInstance->passengerLeaveSec - 1);
-    m_gameConfigInstance->passengerThingSec = MAX(3, m_gameConfigInstance->passengerThingSec - 1);
-    m_gameConfigInstance->numberRange.y = MIN(10, m_gameConfigInstance->numberRange.y + 1);
-    m_gameConfigInstance->carSpeed = MAX(5, m_gameConfigInstance->carSpeed - 1);
-    m_gameConfigInstance->carCreateRate = MAX(1, m_gameConfigInstance->carCreateRate - 1);
-    m_gameConfigInstance->carMatchRate = MAX(0.5, m_gameConfigInstance->carMatchRate - 0.1);
+    m_config->passengerMaxCount = MIN(11, m_config->passengerMaxCount + 1);
+    m_config->passengerCreateRate = MAX(1, m_config->passengerCreateRate - 1);
+    m_config->passengerLeaveSec = MAX(3, m_config->passengerLeaveSec - 1);
+    m_config->passengerThingSec = MAX(3, m_config->passengerThingSec - 1);
+    m_config->numberRange.y = MIN(10, m_config->numberRange.y + 1);
+    m_config->carSpeed = MAX(5, m_config->carSpeed - 1);
+    m_config->carCreateRate = MAX(1, m_config->carCreateRate - 1);
+    m_config->carMatchRate = MAX(0.5, m_config->carMatchRate - 0.1);
+}
+
+void DifficultMonitor::setDifficult(int i){
+    m_config->setConfig("json/difficult.json", i);
 }
 
 void DifficultMonitor::decreateDifficult(){

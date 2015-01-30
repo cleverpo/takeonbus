@@ -18,6 +18,7 @@ public:
 public:
     void destroy();
     
+    void setDifficult(int difficult);
     void increateDifficult();
     void decreateDifficult();
     

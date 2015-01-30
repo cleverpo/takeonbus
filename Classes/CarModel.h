@@ -19,7 +19,7 @@ struct CarConfig{
 class CarModel{
     
 public:
-    static CarModel* create(const CarConfig& config, EventDispatcher* dispatcher = NULL);
+    static CarModel* create(const CarConfig& config, std::function<void(CarModel*)> removeFunc);
 	CarModel();
 	~CarModel();
 
@@ -29,14 +29,13 @@ public:
 
 protected:
     void initNode(CarType type);
-	void init(const CarConfig& config, EventDispatcher* dispatcher);
+	void init(const CarConfig& config, std::function<void(CarModel*)>& removeFunc);
 
 private:
     CarType m_type;
 	Node* m_node;
 	int m_number;
     float m_speedSec;
-    EventDispatcher* m_sceneEventDispatcher;
 };
 
 #endif

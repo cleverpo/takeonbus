@@ -13,6 +13,8 @@ using namespace cocostudio;
 USING_NS_CC;
 using namespace ui;
 
+int difficult = 1;
+
 Scene* HelloWorld::scene()
 {
     // 'scene' is an autorelease object
@@ -67,6 +69,7 @@ bool HelloWorld::init()
 
 	Button* startBtn = static_cast<Button*>(node->getChildByName("startBtn"));
 	startBtn->addClickEventListener([=](Ref* sender){
+        GameConfig::getInstance()->setConfig("json/difficult.json", difficult);
 		Scene* gameScene = GameLayer::scene();
 		Director::getInstance()->pushScene(gameScene);
 	});
@@ -180,7 +183,7 @@ bool HelloWorld::init()
             int final_value   = minValue + percent * (maxValue - minValue) / 100;
             textField->setString((convertToString<int>(final_value)));
             
-            GameConfig::getInstance()->numberRange.y = final_value;
+            difficult = final_value;
         }
     });
     

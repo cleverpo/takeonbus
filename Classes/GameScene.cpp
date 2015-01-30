@@ -65,8 +65,12 @@ bool GameLayer::init(){
         m_carSymbol[i] = false;
     }
 	
-    //关联车管理器和乘客管理器
-    this->m_carManager->setPassengerManager(this->m_passengerManager);
+    //shader
+//    GLProgram* program = GLProgram::createWithFilenames("shader/black.vsh", "shader/black.fsh");
+//    GLProgramCache::getInstance()->addGLProgram(program, "blackShader");
+    
+    //关联乘客管理器和车管理器
+    this->m_passengerManager->setCarManager(this->m_carManager);
     this->initSchedule();
     this->initEventDispatcher();
     
@@ -114,6 +118,22 @@ void GameLayer::initEventDispatcher(){
         
         this->removeCar(model);
     });
+    m_customEventDispatcher->addCustomEventListener(CarManager::EventType_AddCar, [=](EventCustom* event){
+        CarModel* model = static_cast<CarModel*>(event->getUserData());
+        
+        this->addCar(model);
+    });
+    
+    m_customEventDispatcher->addCustomEventListener(PassengerManager::EventType_AddPassenger, [=](EventCustom* event){
+        PassengerModel* model = static_cast<PassengerModel*>(event->getUserData());
+        
+        this->addPassengerToQueue(model);
+    });
+    
+    m_customEventDispatcher->addCustomEventListener(PassengerManager::EventType_ShowResult, [=](EventCustom* event){
+        std::string* text = static_cast<std::string*>(event->getUserData());
+        this->m_resultLayer->showString(*text);
+    });
     
     m_passengerManager->setSceneEventDispatcher(m_customEventDispatcher);
     m_carManager->setSceneEventDispatcher(m_customEventDispatcher);
@@ -137,14 +157,8 @@ cocos2d::Scene* GameLayer::scene(){
 }
 
 GameLayer::GameLayer():
-m_passengerCount(0),
-m_carCount(0),
 m_score(0),
 m_missCount(0),
-m_carCreateTime(0),
-m_passengerCreateTime(0),
-m_carCreateSec(0),
-m_passengerCreateSec(0),
 m_totolTime(0),
 m_carLayer(NULL),
 m_hudLayer(NULL),
@@ -186,18 +200,12 @@ void GameLayer::removePassengerFromQueue(PassengerModel* model, bool isRemove){
         this->removeChild(model->getNode());
     }
     
+    this->m_passengerManager->removePassenger(model);
     this->_eventDispatcher->removeEventListenersForTarget(model->getNode());
-	m_passengerManager->removePassenger(model);
-
-	m_passengerCount--;
 }
 
-bool GameLayer::addPassengerToQueue(){
-    if (m_passengerCount >= GameConfig::getInstance()->passengerMaxCount)
-		return false;
-
-	PassengerModel* passengerModel = m_passengerManager->addPassenger();
-	Node* passengerNode = passengerModel->getNode();
+bool GameLayer::addPassengerToQueue(PassengerModel* passenger){
+	Node* passengerNode = passenger->getNode();
 
 	EventListenerTouchOneByOne* eventListenerTouch = EventListenerTouchOneByOne::create();
 	eventListenerTouch->setSwallowTouches(true);
@@ -210,7 +218,7 @@ bool GameLayer::addPassengerToQueue(){
 		{
 			// mark drag target origin position
 			dragPassengerOriginPos = target->getPosition();
-            passengerModel->setIsDrag(true);
+            passenger->setIsDrag(true);
 			return true;
 		}
 		return false;
@@ -225,7 +233,7 @@ bool GameLayer::addPassengerToQueue(){
 		}
 	};
 	eventListenerTouch->onTouchEnded = [=](Touch* touch, Event* event){
-        passengerModel->setIsDrag(false);
+        passenger->setIsDrag(false);
         Rect passengerRect = passengerNode->getBoundingBox();
         
 		if (PASSENGER_QUEUE_RECT.intersectsRect(passengerRect)){
@@ -253,32 +261,25 @@ bool GameLayer::addPassengerToQueue(){
                 }
             }
             
-            if (ret && ret->getNumber() == passengerModel->getThinkNum()){
+            if (ret && ret->getNumber() == passenger->getThinkNum()){
                 isCorrect = true;
             }
             
             this->changeScore(10, isCorrect);
             
             //remove passenger
-            this->removePassengerFromQueue(passengerModel, true);
+            this->removePassengerFromQueue(passenger, true);
 		}
 	};
 
 	this->addChild(passengerNode, PASSENGER_INDEX);
 	this->_eventDispatcher->addEventListenerWithSceneGraphPriority(eventListenerTouch, passengerNode);
 
-	m_passengerCount++;
-
 	return true;
 }
 
-bool GameLayer::addCar(){
+bool GameLayer::addCar(CarModel* car){
     int carMaxCount = GameConfig::getInstance()->carMaxCount;
-    
-    if (m_carCount >= carMaxCount)
-		return false;
-
-	CarModel* car = m_carManager->addCar();
 	Node* carNode = car->getNode();
     int index = 0;
     
@@ -291,47 +292,31 @@ bool GameLayer::addCar(){
     m_carSymbol[index] = true;
 	this->m_carLayer->addChild(carNode);
 
-	m_carCount++;
 
 	return true;
 }
 
 void GameLayer::removeCar(CarModel* car){
 	this->m_carLayer->removeChild(car->getNode());
-	m_carManager->removeCar(car);
+}
 
-	m_carCount--;
+void GameLayer::stopTimer(){
+    this->pause();
+}
+
+void GameLayer::startTimer(){
+    this->resume();
 }
 
 void GameLayer::gameTimer(float dt){
-    m_totolTime += dt;
-    if (m_totolTime > 20){
-        DifficultMonitor::getInstance()->increateDifficult();
-        m_totolTime = 0;
-        m_resultLayer->showString("升级难度");
-    }
-    GameConfig* config = GameConfig::getInstance();
+//    m_totolTime += dt;
+//    if (m_totolTime > 20){
+//        DifficultMonitor::getInstance()->increateDifficult();
+//        m_totolTime = 0;
+//        m_resultLayer->showString("升级难度");
+//    }
     
-    //判断是否到时间产生汽车
-    if(m_carCreateTime >= m_carCreateSec){
-        if (m_carCount < config->carMaxCount)
-            this->addCar();
-        m_carCreateTime = 0;
-        m_carCreateSec = random<float>(1.0, config->carCreateRate);
-    }else{
-        m_carCreateTime += dt;
-    }
     
-    //判断是否到时间产生乘客
-    if(m_passengerCreateTime >= m_passengerCreateSec){
-        if (m_passengerCount < config->passengerMaxCount)
-            this->addPassengerToQueue();
-        m_passengerCreateTime = 0;
-        float max = config->passengerCreateRate;
-        m_passengerCreateSec = random<float>(1.0, max);
-    }else{
-        m_passengerCreateTime += dt;
-    }
 }
 
 void GameLayer::changeScore(int score, bool add){

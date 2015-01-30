@@ -60,7 +60,8 @@ void PassengerModel::init(const PassengerConfig& config, EventDispatcher* dispat
     ss << this->m_thinkNumber;
     
     //Think fade out
-    Label* thingLabel = Label::createWithTTF(ss.str(), "fonts/arial.ttf", 20);
+    Label* thingLabel = Label::createWithTTF(ss.str(), "fonts/arial.ttf", 28);
+    thingLabel->setColor(Color3B(0, 0, 0));
     thingLabel->setPosition(PASSENGER_THINK_POSITION);
     thingLabel->setAnchorPoint(Vec2(0.5, 0.5));
     manSprite->addChild(thingLabel);

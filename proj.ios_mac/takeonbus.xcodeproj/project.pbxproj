@@ -54,6 +54,10 @@
 		73AF193B1A78E5900003055C /* shader in Resources */ = {isa = PBXBuildFile; fileRef = 73AF193A1A78E5900003055C /* shader */; };
 		73AF193C1A78E5900003055C /* shader in Resources */ = {isa = PBXBuildFile; fileRef = 73AF193A1A78E5900003055C /* shader */; };
 		73AFACCA1A78914700221A37 /* HUDLayer.csb in Resources */ = {isa = PBXBuildFile; fileRef = 73AFACC91A78914700221A37 /* HUDLayer.csb */; };
+		73AFE5181A7A25BE00CF38FC /* json in Resources */ = {isa = PBXBuildFile; fileRef = 73AFE5171A7A25BE00CF38FC /* json */; };
+		73AFE5191A7A25BE00CF38FC /* json in Resources */ = {isa = PBXBuildFile; fileRef = 73AFE5171A7A25BE00CF38FC /* json */; };
+		73AFE51B1A7A264500CF38FC /* GameConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73AFE51A1A7A264500CF38FC /* GameConfig.cpp */; };
+		73AFE51C1A7A264500CF38FC /* GameConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73AFE51A1A7A264500CF38FC /* GameConfig.cpp */; };
 		73C1AEDE1A74A71B00EDECC8 /* CarManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73C1AED41A74A71B00EDECC8 /* CarManager.cpp */; };
 		73C1AEDF1A74A71B00EDECC8 /* CarManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73C1AED41A74A71B00EDECC8 /* CarManager.cpp */; };
 		73C1AEE01A74A71B00EDECC8 /* CarModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73C1AED61A74A71B00EDECC8 /* CarModel.cpp */; };
@@ -177,6 +181,8 @@
 		73AF19371A78D2D20003055C /* DifficultMonitor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DifficultMonitor.cpp; sourceTree = "<group>"; };
 		73AF193A1A78E5900003055C /* shader */ = {isa = PBXFileReference; lastKnownFileType = folder; path = shader; sourceTree = "<group>"; };
 		73AFACC91A78914700221A37 /* HUDLayer.csb */ = {isa = PBXFileReference; lastKnownFileType = file; path = HUDLayer.csb; sourceTree = "<group>"; };
+		73AFE5171A7A25BE00CF38FC /* json */ = {isa = PBXFileReference; lastKnownFileType = folder; path = json; sourceTree = "<group>"; };
+		73AFE51A1A7A264500CF38FC /* GameConfig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameConfig.cpp; sourceTree = "<group>"; };
 		73B505D51A7608F2003EDE06 /* GameConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
 		73C1AED41A74A71B00EDECC8 /* CarManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CarManager.cpp; sourceTree = "<group>"; };
 		73C1AED51A74A71B00EDECC8 /* CarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarManager.h; sourceTree = "<group>"; };
@@ -322,6 +328,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				73AFE5171A7A25BE00CF38FC /* json */,
 				73AF193A1A78E5900003055C /* shader */,
 				73AFACC91A78914700221A37 /* HUDLayer.csb */,
 				73C1AF3C1A74B87A00EDECC8 /* bang.png */,
@@ -362,6 +369,7 @@
 				73B505D51A7608F2003EDE06 /* GameConfig.h */,
 				73AF19361A78D1780003055C /* DifficultMonitor.h */,
 				73AF19371A78D2D20003055C /* DifficultMonitor.cpp */,
+				73AFE51A1A7A264500CF38FC /* GameConfig.cpp */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -536,6 +544,7 @@
 				73C1AF5C1A74B87A00EDECC8 /* person in Resources */,
 				73C1AF561A74B87A00EDECC8 /* GameScene.csb in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
+				73AFE5181A7A25BE00CF38FC /* json in Resources */,
 				73C1AF4E1A74B87A00EDECC8 /* CloseNormal.png in Resources */,
 				73C1AF481A74B87A00EDECC8 /* bang.png in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
@@ -563,6 +572,7 @@
 				73C1AF5D1A74B87A00EDECC8 /* person in Resources */,
 				73C1AF491A74B87A00EDECC8 /* bang.png in Resources */,
 				73C1AF591A74B87A00EDECC8 /* HelloWorld.png in Resources */,
+				73AFE5191A7A25BE00CF38FC /* json in Resources */,
 				73C1AF531A74B87A00EDECC8 /* Default in Resources */,
 				73C1AF4B1A74B87A00EDECC8 /* bg in Resources */,
 				73C1AF511A74B87A00EDECC8 /* CloseSelected.png in Resources */,
@@ -580,6 +590,7 @@
 				73C1AEE01A74A71B00EDECC8 /* CarModel.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				73C1AEE41A74A71B00EDECC8 /* PassengerManager.cpp in Sources */,
+				73AFE51B1A7A264500CF38FC /* GameConfig.cpp in Sources */,
 				73AF19381A78D2D20003055C /* DifficultMonitor.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				73C1AEE61A74A71B00EDECC8 /* PassengerModel.cpp in Sources */,
@@ -602,6 +613,7 @@
 				73C1AEE11A74A71B00EDECC8 /* CarModel.cpp in Sources */,
 				73C1AEE71A74A71B00EDECC8 /* PassengerModel.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
+				73AFE51C1A7A264500CF38FC /* GameConfig.cpp in Sources */,
 				73C1AEE31A74A71B00EDECC8 /* GameScene.cpp in Sources */,
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 			);

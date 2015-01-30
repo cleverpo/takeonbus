@@ -35,14 +35,16 @@ protected:
 protected:
     void passengerLeave(PassengerModel* model);
 	void removePassengerFromQueue(PassengerModel* model, bool isRemove);
-	bool addPassengerToQueue();
+	bool addPassengerToQueue(PassengerModel* passenger);
 
 protected:
-	bool addCar();
+	bool addCar(CarModel* car);
 	void removeCar(CarModel* car);
 
 protected:
 	void gameTimer(float dt);
+    void stopTimer();
+    void startTimer();
 
 protected:
     void changeScore(int score, bool add);
@@ -60,9 +62,6 @@ private:
     cocos2d::ui::Text* m_missLabel;
     
 private:
-	int m_passengerCount;
-    int m_carCount;
-    
 	PassengerManager* m_passengerManager;
 	CarManager* m_carManager;
     
@@ -75,12 +74,6 @@ private:
     int m_score;
     
 private:
-    //汽车乘客出现的计时器
-    float m_carCreateTime;
-    float m_passengerCreateTime;
-    //汽车乘客出现的秒数
-    float m_carCreateSec;
-    float m_passengerCreateSec;
     //总时间秒数
     float m_totolTime;
     

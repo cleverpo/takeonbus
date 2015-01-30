@@ -13,8 +13,7 @@ using namespace cocostudio;
 
 
 CarModel::CarModel():
-m_node(NULL),
-m_sceneEventDispatcher(NULL)
+m_node(NULL)
 {
 
 }
@@ -23,10 +22,10 @@ CarModel::~CarModel(){
 	CC_SAFE_RELEASE(m_node);
 }
 
-CarModel* CarModel::create(const CarConfig& config, EventDispatcher* dispatcher/* = NULL */){
+CarModel* CarModel::create(const CarConfig& config, std::function<void(CarModel*)> removeFunc){
 	CarModel* ret = new CarModel();
 	if (ret) {
-		ret->init(config, dispatcher);
+		ret->init(config, removeFunc);
 
 		return ret;
 	}
@@ -62,32 +61,31 @@ void CarModel::initNode(CarType type){
     Sprite* notice = static_cast<Sprite*>(car->getChildByName("notice"));
     Text* label = static_cast<Text*>(notice->getChildByName("label"));
     
-    GLProgram* programe = GLProgramCache::getInstance()->getGLProgram("");
-    notice->setGLProgram();
+//    GLProgram* programe = GLProgramCache::getInstance()->getGLProgram("blackShader");
+//    notice->setGLProgram(programe);
     label->setString(convertToString(this->m_number));
     
     this->m_node = car;
     this->m_node->retain();
 }
 
-void CarModel::init(const CarConfig& config, EventDispatcher* dispatcher){
+void CarModel::init(const CarConfig& config, std::function<void(CarModel*)>& removeFunc){
     this->m_type     = config.carType;
     this->m_speedSec = config.speedSec;
     this->m_number   = config.number;
-    this->m_sceneEventDispatcher = dispatcher;
     
     this->initNode(config.carType);
     
     //speed
     if(config.carType == CarType::Blue){
-        //blue 快2秒
-        this->m_speedSec -= 2;
+        //blue 快1秒
+        this->m_speedSec -= 1;
     }else if(config.carType == CarType::Red){
-        //red 快4秒
-        this->m_speedSec -= 4;
+        //red 快2秒
+        this->m_speedSec -= 2;
     }
     //action
     this->m_node->runAction(Sequence::createWithTwoActions(MoveBy::create(this->m_speedSec, Vec2(1400, 0)), CallFunc::create([=](){
-        this->m_sceneEventDispatcher->dispatchCustomEvent(CarManager::EventType_RemoveCar, this);
+        removeFunc(this);
     })));
 }

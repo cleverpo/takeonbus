@@ -1,0 +1,62 @@
+{
+    "1" : {
+        "stayTime" : 60,
+        "carCreaetRate" : 10,
+        "carSpeed" : 21,
+        "maxNumber" : 3
+    },
+    "2" : {
+        "stayTime" : 55,
+        "carCreaetRate" : 10,
+        "carSpeed" : 20,
+        "maxNumber" : 4
+    },
+    "3" : {
+        "stayTime" : 50,
+        "carCreaetRate" : 10,
+        "carSpeed" : 19,
+        "maxNumber" : 5
+    },
+    "4" : {
+        "stayTime" : 45,
+        "carCreaetRate" : 10,
+        "carSpeed" : 18,
+        "maxNumber" : 6
+    },
+    "5" : {
+        "stayTime" : 40,
+        "carCreaetRate" : 10,
+        "carSpeed" : 17,
+        "maxNumber" : 7
+    },
+    "6" : {
+        "stayTime" : 30,
+        "carCreaetRate" : 8,
+        "carSpeed" : 15,
+        "maxNumber" : 8
+    },
+    "7" : {
+        "stayTime" : 25,
+        "carCreaetRate" : 7,
+        "carSpeed" : 13,
+        "maxNumber" : 9
+    },
+    "8" : {
+        "stayTime" : 20,
+        "carCreaetRate" : 6,
+        "carSpeed" : 11,
+        "maxNumber" : 9
+    },
+    "9" : {
+        "stayTime" : 15,
+        "carCreaetRate" : 5,
+        "carSpeed" : 9,
+        "maxNumber" : 9
+    },
+    "10" : {
+        "stayTime" : 15,
+        "carCreaetRate" : 3,
+        "carSpeed" : 5,
+        "maxNumber" : 9
+    }
+}
