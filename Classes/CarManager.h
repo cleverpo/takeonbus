@@ -1,6 +1,7 @@
 #ifndef CAR_MANAGER_H
 #define CAR_MANAGER_H
 
+#include "cocos2d.h"
 #include <map>
 
 class PassengerManager;

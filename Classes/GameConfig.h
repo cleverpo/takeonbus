@@ -9,6 +9,9 @@
 #ifndef takeonbus_config_h
 #define takeonbus_config_h
 
+#include <string>
+#include "cocos2d.h"
+
 class GameConfig {
     
 protected:

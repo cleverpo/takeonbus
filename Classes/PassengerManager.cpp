@@ -14,7 +14,6 @@ const std::string PassengerManager::EventType_ShowResult = "showResult";
 const std::string TimerKey = "PassengerManagerTimer";
 
 PassengerManager::PassengerManager():
-m_modelList(NULL),
 m_sceneEventDispatcher(NULL),
 m_carManager(NULL)
 {
