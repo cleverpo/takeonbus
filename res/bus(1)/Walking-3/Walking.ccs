@@ -1,0 +1,20 @@
+<Solution>
+  <PropertyGroup Name="Walking" Version="2.0.6.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Project Name="Walking.csd" />
+        <PlistImageFolder PListFile="walking.plist" LastPlistWriteTime="2015-02-02T15:35:53+08:00" LastImageWriteTime="2015-02-02T17:03:34+08:00" Name=".walking_PList.Dir">
+          <PlistImageFile Name="Arm.png" Key="Arm.png" />
+          <PlistImageFile Name="Body.png" Key="Body.png" />
+          <PlistImageFile Name="Foot.png" Key="Foot.png" />
+          <PlistImageFile Name="Hand.png" Key="Hand.png" />
+          <PlistImageFile Name="Head.png" Key="Head.png" />
+          <PlistImageFile Name="Leg.png" Key="Leg.png" />
+          <PlistImageFile Name="Shoe.png" Key="Shoe.png" />
+          <PlistImageFile Name="shadow.png" Key="shadow.png" />
+        </PlistImageFolder>
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>
