@@ -1,0 +1,44 @@
+<Solution>
+  <PropertyGroup Name="Walking" Version="2.0.8.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Folder Name="person">
+          <Project Name="Walking1.csd" />
+          <PlistImageFolder PListFile="walking1.plist" LastPlistWriteTime="2015-02-03T15:15:34+08:00" LastImageWriteTime="2015-02-02T23:01:15+08:00" Name=".walking1_PList.Dir">
+            <PlistImageFile Name="Arm.png" Key="Arm.png" />
+            <PlistImageFile Name="Body.png" Key="Body.png" />
+            <PlistImageFile Name="Foot.png" Key="Foot.png" />
+            <PlistImageFile Name="Hand.png" Key="Hand.png" />
+            <PlistImageFile Name="Head.png" Key="Head.png" />
+            <PlistImageFile Name="Leg.png" Key="Leg.png" />
+            <PlistImageFile Name="Shoe.png" Key="Shoe.png" />
+            <PlistImageFile Name="shadow.png" Key="shadow.png" />
+          </PlistImageFolder>
+          <Project Name="Walking2.csd" />
+          <PlistImageFolder PListFile="walking2.plist" LastPlistWriteTime="2015-02-03T15:17:55+08:00" LastImageWriteTime="2015-02-02T22:10:31+08:00" Name=".walking2_PList.Dir">
+            <PlistImageFile Name="Arm.png" Key="Arm.png" />
+            <PlistImageFile Name="Body.png" Key="Body.png" />
+            <PlistImageFile Name="Foot.png" Key="Foot.png" />
+            <PlistImageFile Name="Hand.png" Key="Hand.png" />
+            <PlistImageFile Name="Head.png" Key="Head.png" />
+            <PlistImageFile Name="Leg.png" Key="Leg.png" />
+            <PlistImageFile Name="Shoe.png" Key="Shoe.png" />
+            <PlistImageFile Name="shadow.png" Key="shadow.png" />
+          </PlistImageFolder>
+          <Project Name="Walking3.csd" />
+          <PlistImageFolder PListFile="walking3.plist" LastPlistWriteTime="0001-01-01T00:00:00+08:00" LastImageWriteTime="0001-01-01T00:00:00+08:00" Name=".walking3_PList.Dir">
+            <PlistImageFile Name="Arm.png" Key="Arm.png" />
+            <PlistImageFile Name="Body.png" Key="Body.png" />
+            <PlistImageFile Name="Foot.png" Key="Foot.png" />
+            <PlistImageFile Name="Hand.png" Key="Hand.png" />
+            <PlistImageFile Name="Head.png" Key="Head.png" />
+            <PlistImageFile Name="Leg.png" Key="Leg.png" />
+            <PlistImageFile Name="Shoe.png" Key="Shoe.png" />
+            <PlistImageFile Name="shadow.png" Key="shadow.png" />
+          </PlistImageFolder>
+        </Folder>
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>
